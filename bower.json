@@ -1,0 +1,24 @@
+{
+  "name": "selecty",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/undead25/selecty"
+  },
+  "description": "replacement for select boxes under the guide of google material design",
+  "authors": [
+    "undead25"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "selectyjs",
+    "selecty",
+    "select",
+    "material select"
+  ],
+  "homepage": "https://github.com/undead25/selecty",
+  "ignore": [
+    "**/.*",
+    "node_modules"
+  ]
+}
