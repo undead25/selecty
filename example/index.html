@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport">
+  <title>Selecty</title>
+  <link rel="stylesheet" href="css/selecty.css">
+  <script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+  <style>
+    html, body {height: 100%; color: #333; margin:0;padding: 0;}
+    h2{font-weight: 200; margin-bottom: 40px; }
+    .box {display: inline-block; padding: 40px; width: 20%;}
+    .btn {padding: 10px 12px; border:1px solid #4285f4; color: #4285f4; cursor: pointer; margin-top: 20px; display: inline-block; border-radius: 2px; }
+    .btn:hover {background-color: #4285f4; color: #fff;}
+    .text-center {text-align: center;}
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h2>Basic</h2>
+    <select id="select1">
+      <option value="a">Option 1</option>
+      <option value="b">Option 2</option>
+      <option value="c" selected>Option 3</option>
+    </select>
+    <div class="text-center">
+      <a id="getValue1" class="btn">Selected Value</a>  
+    </div>
+  </div>
+  <div class="box">
+    <h2>Disabled Option</h2>
+    <select id="select2">
+      <option value="a">Option 1</option>
+      <option value="b">Option 2</option>
+      <option value="c">Option 3</option>
+      <option value="d" disabled>Option Disabled</option>
+    </select>
+    <div class="text-center">
+      <a id="getValue2" class="btn">Selected Value</a>  
+    </div>
+  </div>
+  
+  <div class="box">
+    <h2>Optgroup</h2>
+    <select id="select3">
+      <optgroup label="Group 1">
+        <option value="a">Option 1</option>
+        <option value="b">Option 2</option>
+      </optgroup>
+      <optgroup label="Group 2">
+        <option value="c">Option 3</option>
+        <option value="d" selected>Option 4</option>
+      </optgroup>
+    </select>
+    <div class="text-center">
+      <a id="getValue3" class="btn">Selected Value</a>  
+    </div>
+  </div>
+  <div class="box">
+    <h2>Multiple</h2>
+    <select id="select4" multiple>
+      <optgroup label="Group 1">
+        <option value="a">Option 1</option>
+        <option value="b">Option 2</option>
+      </optgroup>
+      <optgroup label="Group 2">
+        <option value="c">Option 3</option>
+        <option value="d" selected>Option 4</option>
+      </optgroup>
+      <optgroup label="Group 3">
+        <option value="e">Option 5</option>
+        <option value="f" selected>Option 6</option>
+      </optgroup>
+    </select>
+    <div class="text-center">
+      <a id="getValue4" class="btn">Selected Value</a>  
+    </div>
+  </div>
+  <div class="box">
+    <h2>Select Disabled</h2>
+    <select id="select5" disabled>
+      <option value="a" selected>Option 1</option>
+      <option value="b">Option 2</option>
+    </select>
+    <div class="text-center">
+      <a id="getValue5" class="btn">Selected Value</a>  
+    </div>
+  </div>
+  <script src="js/selecty.js"></script>
+  <script>
+    var el = document.getElementById('select1');
+    var el2 = document.getElementById('select2');
+    var el3 = document.getElementById('select3');
+    var el4 = document.getElementById('select4');
+    var el5 = document.getElementById('select5');
+
+    var a = new selecty(el);
+    document.getElementById('getValue1').onclick = function() {
+      alert(el.value);
+    }
+
+    var b = new selecty('#select2');
+    document.getElementById('getValue2').onclick = function() {
+      alert(el2.value);
+    }
+
+    var c = new selecty(el3);
+    document.getElementById('getValue3').onclick = function() {
+      alert(el3.value);
+    }
+
+    var c = new selecty(el4);
+    document.getElementById('getValue4').onclick = function() {
+      var selectedValue = '';
+      for (var i = 0; i < el4.length; i++) {
+        if (el4.options[i].selected) {
+          selectedValue += el4.options[i].value+' ';
+        }
+      }
+      alert(selectedValue);
+    }
+
+    // var d = new selecty('#select5');
+    // document.getElementById('getValue5').onclick = function() {
+    //   alert(el5.value);
+    // }
+    
+    // using jquery
+    $('#select5').selecty();
+    $('#getValue5').click(function(event) {
+      alert($('#select5').val());
+    });
+  </script>
+</body>
+</html>
