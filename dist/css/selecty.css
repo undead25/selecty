@@ -1,3 +1,34 @@
+.selecty-select {
+  width: 100%;
+  display: block;
+  border: none;
+  border-bottom: 1px solid #d9d6d4;
+  background: transparent;
+  height: 36px;
+  line-height: 36px;
+  text-align: left;
+  font-size: 16px;
+  color: #1b1919;
+  border-radius: 0;
+  position: relative;
+  outline: 0 none;
+}
+
+.selecty-select[disabled] {
+  cursor: not-allowed;
+  color: #8d8480;
+  border-bottom: 1px dashed #d9d6d4;
+}
+
+.selecty-arrow {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 4px dashed #8d8480;
+}
+
 .selecty {
   width: 100%;
   position: relative;
@@ -44,6 +75,7 @@
 }
 
 .selecty .selecty-selected:hover, .selecty .selecty-selected:active, .selecty .selecty-selected:focus {
+  text-decoration: none;
   background: none;
 }
 

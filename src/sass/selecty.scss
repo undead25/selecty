@@ -34,6 +34,37 @@ $shadow-third-color: rgba(0, 0, 0, 0.12) !default;
               0px 3px 16px 2px $shadow-third-color;
 }
 
+.selecty-select {
+  width: 100%;
+  display: block;
+  border: none;
+  border-bottom: 1px solid $gray-lighter;
+  background: transparent;
+  height: $selecty-height;
+  line-height: $selecty-height;
+  text-align: left;
+  font-size: $font-size-base;
+  color: $dark;
+  border-radius: 0;
+  position: relative;
+  outline: 0 none;
+
+  &[disabled] {
+    cursor: not-allowed;
+    color: $gray-light;
+    border-bottom: 1px dashed $gray-lighter;
+  }
+}
+
+.selecty-arrow {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-left: $selecty-triangle-size solid transparent;
+  border-right: $selecty-triangle-size solid transparent;
+  border-top: $selecty-triangle-size dashed $selecty-triangle-bg;
+}
+
 .selecty {
   width: 100%;
   position: relative;
@@ -77,6 +108,7 @@ $shadow-third-color: rgba(0, 0, 0, 0.12) !default;
     }
 
     &:hover, &:active, &:focus {
+      text-decoration: none;
       background:none;
     }
   }

@@ -167,6 +167,22 @@
       } else if (window.event) {
         window.event.cancelBubble = true;
       }
+    },
+
+    /**
+     * [Get element offset postion, like jQuery `$el.offset()`;]
+     *
+     * @param el {Object} -- element.
+     *
+     * @return  {Object}  -- top and left
+     */
+    getOffset: function(el) {
+      var box = el.getBoundingClientRect();
+
+      return {
+        top: box.top + window.pageYOffset - document.documentElement.clientTop,
+        left: box.left + window.pageXOffset - document.documentElement.clientLeft
+      };
     }
   };
 
@@ -237,6 +253,17 @@
      *
      */
     build: function() {
+      var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+      if (isMobile) {
+        this.el.classList.add('selecty-select');
+        var arrow = document.createElement('div');
+        arrow.classList.add('selecty-arrow');
+        arrow.style.top = commonUse.getOffset(this.el).top + this.el.offsetHeight/2 + 'px';
+        arrow.style.right = commonUse.getOffset(this.el).left + 'px';
+        this.el.parentNode.insertBefore(arrow, arrow.nextSibling);
+        return;
+      }
       this.el.style.display = 'none';  // hide original <select>
 
       this.options = this.el.querySelectorAll('option');
@@ -296,7 +323,7 @@
       if(this.disabled) return;
 
       var that = this;
-
+      
       commonUse.addEvent(that.btn, 'click', function(e) {
         // close other selety if it has been showned
         var others = that.otherActived();
@@ -306,7 +333,11 @@
         
         commonUse.stopPropagation(e);
         that.show();
-        commonUse.addEvent(document.body, 'click', bodyClick);
+        commonUse.addEvent(document, 'click', bodyClick);
+      });
+
+      commonUse.addEvent(document, 'keydown', function(e) {
+        if (e.which == 27) that.hide(); // ESC hide options
       });
 
       var bodyClick = function(e) {
@@ -330,11 +361,11 @@
             that.selected.push(targetIndex); // push clicked index to cache selected
             that.updateSelected();
             that.hide();
-            commonUse.removeEvent(document.body, 'click', bodyClick);
+            commonUse.removeEvent(document, 'click', bodyClick);
           }
         } else {
           that.hide();
-          commonUse.removeEvent(document.body, 'click', bodyClick);
+          commonUse.removeEvent(document, 'click', bodyClick);
         }
       };
     },
